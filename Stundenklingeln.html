@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="de">
+
+	<head>
+		<meta name="viewport" content="width=device-width">
+		<meta charset="utf-8" />
+		<title>Stundenklingeln</title>
+		
+		<style>
+			body {
+				background-image: url('https://www.hrtoday.ch/sites/hrtoday.ch/files/media/article/Zeit_Uhr_Kopf_Stress_123rf.jpg');
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-size: 100% 100%;
+			}
+
+			.box {
+			
+				float: left;
+				width: 40%;
+				height: 300px;
+				padding: 20 px;
+				box-sizing: border-box;
+				box-shadow: 10px 10px 20px -5px black;
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+
+			.box2 {
+				float: right;
+				width: 40%;
+				height: 300px;
+				padding: 20 px;
+				box-sizing: border-box;
+				box-shadow: 10px 10px 20px -5px black;
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+			
+			.box3 {
+				float: left;
+				padding: 20 px;
+				box-shadow: 10px 10px 20px -5px black;
+				font-size: 30px;
+				font-weight: 600;
+			}
+			
+			.box4 {
+				clear: both;
+				float: center;
+				width: 40%;
+				height: 300px;
+				padding: 20 px;
+				box-shadow: 10px 10px 20px -5px black;
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+
+			.hone {
+				width: 100%;
+				padding: 1 px;
+				box-sizing: border-box;
+				float: center;
+			}
+			
+			.hehe {
+				width: 35px;
+				height: 35px;
+			}
+			
+			.range {
+				width: 500px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script>
+		function addZero(i) {
+			if (i < 10) {
+			i = "0" + i;
+			}
+			return i;
+		}
+
+		function time() {
+			var nd = new Date();
+			var x = document.getElementById("TIME");
+			var h = addZero(nd.getHours());
+			var m = addZero(nd.getMinutes());
+			var s = addZero(nd.getSeconds());
+			x.innerHTML = h + ":" + m + ":" + s;
+			var TRTime=h + ":" + m + ":" + s;
+			var cconfirm;
+			var audioStunde = document.getElementById("Stunde");
+			var audioPause = document.getElementById("Pause");
+			var check = document.getElementById("school").checked;
+			var nextRing = "Der Schulmodus ist aus, sodass sie nicht sehen können, \n wann das nächste Klingeln sein wird.";
+			var StundeBox = "";
+			
+			if (check == true){
+				cconfirm = "chulmodus: AN";
+				
+				if (h == 7 && m < 40) {
+					nextRing="7:40";
+					StundeBox = "";
+					
+				} else if ((h == 7 && m >= 40) || (h==8 && m < 25)) {
+					nextRing="8:25";
+					StundeBox = "1. Stunde";
+					
+				} else if (h == 8 && m >= 25 && m < 35) {
+					nextRing="8:35";
+					StundeBox = "1. Stunde, Pause \(10 min.\)";
+					
+				} else if ((h == 8 && m >= 35) || (h==9 && m < 20)) {
+					nextRing="9:20";
+					StundeBox = "2. Stunde";
+					
+				} else if (h == 9 && m >= 20 && m < 40) {
+					nextRing="9:40";
+					StundeBox = "2. Stunde, Pause \(20 min.\) <br> Frühstückpause";
+					
+				} else if ((h == 9 && m >= 40) || (h == 11 && m < 10) || (h==10)) {
+					nextRing="11:10";
+					StundeBox = "3. +4. Stunde";
+					
+				} else if (h == 11 && m >= 10 && m < 20) {
+					nextRing="11:20";
+					StundeBox = "4. Stunde, Pause \(10 min.\)";
+					
+				} else if ((h == 11 && m >= 20) || (h == 12 && m < 05)) {
+					nextRing="12:05";
+					StundeBox = "5. Stunde";
+					
+				} else if (h == 12 && m >= 05 && m < 35) {
+					nextRing="12:35";
+					StundeBox = "5. Stunde, Pause \(30 min.\) <br> Mittagspause";
+					
+				} else if ((h == 12 && m >= 35) || (h == 13 && m < 20)) {
+					nextRing="13:20";
+					StundeBox = "6. Stunde";
+					
+				} else {
+					nextRing="Gratuliere! Du hast die Schule beendet und weißt jetzt, wie \"Schule\" geschrieben wird.";
+					StundeBox="Pause \(18 h; 20 min\)";
+				}
+				
+				
+				switch(TRTime){
+					//1.Stunde
+					case ("07:40:00"):
+						audioStunde.play();
+						break;
+						
+					case ("08:25:00"):
+						audioPause.play();
+						break;
+					
+					//2.Stunde
+					case ("08:35:00"):
+						audioStunde.play();
+						break;
+						
+					case ("09:20:00"):
+						audioPause.play();
+						break;
+						
+					//3.+4. Stunde
+					case ("09:40:00"):
+						audioStunde.play();
+						break;
+						
+					case ("11:10:00"):
+						audioPause.play();
+						break;
+						
+					//5.Stunde
+					case ("11:20:00"):
+						audioStunde.play();
+						break;
+						
+					case ("12:05:00"):
+						audioPause.play();
+						break;
+						
+					//6. Stunde
+					case ("12:35:00"):
+						audioStunde.play();
+						break;
+						
+					case ("13:20:00"):
+						audioPause.play();
+						break;
+				}
+				
+			} else {
+				cconfirm = "Schulmodus: AUS";
+			}
+				
+			document.getElementById("Modus").innerHTML= cconfirm;
+			document.getElementById("next").innerHTML = nextRing;
+			document.getElementById("StundeBox").innerHTML = StundeBox;
+		}
+		
+		function w_k_i_d_c () {
+			var wkidc = document.getElementById("wkidc");
+			var AusgabeRange = document.getElementById("AR").innerHTML = wkidc;
+		}
+		
+		var timer = setInterval(time, 1000);
+		</script>
+		<div>
+			<div class="hone">
+				<h1 align="center" style="font-size:45px;text-shadow: 6px 6px 8px black;color: black">Hallo, willkommen :-D</h1>
+			</div>
+			
+			<div class="box">
+				<p style="font-size:20px" align="center">
+				Zeit:
+				</p>
+				<strong> <p align="center" style="font-size:50px" id="TIME">(Zeit)</p> </strong>
+				<div id="StundeBox"  class="box3"></div>
+			</div>
+
+			<div class="box2">
+				<h2>N&auml;chtes Klingeln:</h2>
+				<b><i> <p align="center" id="next" style="font-size:30px">Der Schulmodus ist aus, sodass sie nicht sehen k&ouml;nnen, wann das nächste Klingeln sein wird.</p> </i></b>
+				<b> <p id="Modus" style="font-size:30px">Schulmodus: AUS</p> </b>
+				<input type="checkbox" id="school" class="hehe">
+			</div>
+			<!--<br> <br>
+			<div class="box4">
+				<label for="vol" style="font-weight: bold; font-size: 25px">Wie krass ist dein Computer? (1-1000)</label><br>
+				<input type="range" id="wkidc" class="range" list="tickmarks">
+				<input type="button" value="Bestätigen" id="button">
+				<p id="AR"></p>
+			</div>
+		</div>
+		
+		
+		<datalist id="tickmarks">
+			<option value="0"></option>
+			<option value="100"></option>
+			<option value="200"></option>
+			<option value="300"></option>
+			<option value="400"></option>
+			<option value="500"></option>
+			<option value="600"></option>
+			<option value="700"></option>
+			<option value="800"></option>
+			<option value="900"></option>
+			<option value="1000"></option>
+		</datalist>-->
+		</div>
+			<audio id="Stunde"
+			src="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/laugh_x.wav" preload="auto">
+			Ihr Browser unterschtüzt diese Datei nicht.<br> 
+			<a href="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/laugh_x.wav">Sie können es hier manuell aufrufen.</a>
+		</audio>
+		
+		<audio id="Pause"
+			src="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/fanfare3.wav" preload="auto">
+			Ihr Browser unterschtüzt diese Datei nicht.<br> 
+			<a href="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/fanfare3.wav">Sie können es hier manuell aufrufen.</a>
+		</audio>
+	</body>
+</html>
