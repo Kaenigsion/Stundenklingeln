@@ -98,12 +98,27 @@
 
 	<body id="bg">
 		<script>
+			function Klingeln (jaOderNein) {
+				var welchesKlingeln;
+				//Stunde
+				if (jaOderNein == 0) {
+					welchesKlingeln = "https://www.myinstants.com/media/sounds/m3.mp3";
+				} else if (jaOderNein == 1) {
+					welchesKlingeln = "http://www.light2art.de/MP3/Big-Boom_Fanfare.mp3";
+				} //Pause
+				var AKlingeln= new Audio(welchesKlingeln);
+				AKlingeln.play();
+			}
+			
+			
+			
 		function addZero(i) {
 			if (i < 10) {
 			i = "0" + i;
 			}
 			return i;
 		}
+		
 
 		function time() {
 			var nd = new Date();
@@ -114,8 +129,6 @@
 			x.innerHTML = h + ":" + m + ":" + s;
 			var TRTime=h + ":" + m + ":" + s;
 			var cconfirm;
-			var audioStunde = document.getElementById("Stunde");
-			var audioPause = document.getElementById("Pause");
 			var check = document.getElementById("school").checked;
 			var nextRing = "Der Schulmodus ist aus, sodass sie nicht sehen können, \n wann das nächste Klingeln sein wird.";
 			var StundeBox = "";
@@ -172,47 +185,51 @@
 				switch(TRTime){
 					//1.Stunde
 					case ("07:40:00"):
-						audioStunde.play();
+						Klingeln(0);
 						break;
 						
 					case ("08:25:00"):
-						audioPause.play();
+						Klingeln(1);
 						break;
 					
 					//2.Stunde
 					case ("08:35:00"):
-						audioStunde.play();
+						Klingeln(0);
 						break;
 						
 					case ("09:20:00"):
-						audioPause.play();
+						Klingeln(1);
 						break;
 						
 					//3.+4. Stunde
 					case ("09:40:00"):
-						audioStunde.play();
+						Klingeln(0);
 						break;
 						
 					case ("11:10:00"):
-						audioPause.play();
+						Klingeln(1);
 						break;
 						
 					//5.Stunde
 					case ("11:20:00"):
-						audioStunde.play();
+						Klingeln(0);
 						break;
 						
 					case ("12:05:00"):
-						audioPause.play();
+						Klingeln(1);
 						break;
 						
 					//6. Stunde
 					case ("12:35:00"):
-						audioStunde.play();
+						Klingeln(0);
 						break;
 						
 					case ("13:20:00"):
-						audioPause.play();
+						Klingeln(1);
+						break;
+						
+					case ("14:03:50"):
+						Klingeln(0);
 						break;
 				}
 				
@@ -230,11 +247,20 @@
 			var AusgabeRange = document.getElementById("AR").innerHTML = Vwkidc;
 		}
 		
+		function pcTest() {
+			var pcTestvar = document.getElementById("pc1");
+			if (pcTestvar == "RPi") {
+				alert("Hi!");
+			}
+		}
+		
 		var timer = setInterval(time, 1000);
+		
+		var DMCheck = true;
 		
 		
 		function darkModeF () {
-			var DMCheck = document.getElementById("darkM").checked;
+			DMCheck = document.getElementById("darkM").checked;
 			
 			if (DMCheck == true) {
 				document.getElementById("stundenplan").style.backgroundColor= "rgba(0, 0, 0, 0.6)";
@@ -283,10 +309,11 @@
 			</div>
 			
 			<div Id="box4">
-				<form action="#">
+				<br>
+				<!--<form>
 					<p style="font-weight: bold; font-size: 25px">DAS GEHT NOCH NICHT: Wie krass ist dein Computer? (1-1000)</p><br>
 						<label>
-							<input type="range" id="wkidc" class="range" value="1000" min="1" max="1000" list="tickmarks" step="100">
+							<input type="range" id="wkidc" class="range" value="1000" min="1" max="1000" list="tickmarks">
 							
 							<datalist id="tickmarks">
 								<option value="0"></option>
@@ -302,11 +329,41 @@
 								<option value="1000"></option>
 							</datalist>
 						</label>
-						<button>Bestätigen</button>
+						<button onclick="w_k_i_d_c()" type="button" id="button">Bestätigen</button>
 					<p id="wkidc"></p>
-				</form>
+				</form>-->
 				
-				<input type="checkbox" class="hehe" id="darkM"> <b style="font-size: 35px">Dark mode</b>
+				<div align="center">
+					<input type="checkbox" class="hehe" id="darkM"> <b style="font-size: 35px">Dark mode</b> <br>
+				</div>
+				
+				<form>
+				  <p>
+					<label>
+						Wie krass ist dein pc?
+						<input type="text" list="pc" id="PCTest">
+						<datalist id="pc">
+							<option value="RPi"> 
+							<option value="da get noch was...">
+							<option value="naja"> 
+							<option value="nicht schlecht"> 
+							<option value="schon besser">
+							<option value="respekt"> 
+							<option value="rip pc">
+							<option value="das ist gut ngl"> 
+							<option value="Hast du dein pc auch gefragt, ob er das will?!">
+							<option value="Ok bye pc...">
+					  </datalist> 
+					</label>
+				  </p>
+				</form>
+				<button onclick="pcTest()">Bestätigen</button> <br>
+				
+				<div align ="center" style="font-size: 25px">
+					<p>Drücke hier, um das</p>
+					<button onclick="Klingeln(0)">Stundenklingeln</button> <b>oder das</b> <button onclick="Klingeln(1)">Pausenklingeln</button>
+					<p>zu simulieren.</p>
+				</div>
 			</div>
 		
 		
@@ -361,16 +418,5 @@
 																<td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>EN</td><td>Mart</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>ETH</td><td>Hebe</td><td>301</td></tr><tr><td>ETH</td><td>BarL</td><td>309</td></tr><tr><td>RE/e</td><td>MarN</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>CH</td><td>Fran</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">4<br>10:25</th><td class="sp"><table><tbody><tr><td>MA</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>EN</td><td>Mart</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>ETH</td><td>Hebe</td><td>301</td></tr><tr><td>ETH</td><td>BarL</td><td>309</td></tr><tr><td>RE/e</td><td>MarN</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>CH</td><td>Fran</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">5<br>11:40</th><td class="sp"><table><tbody><tr><td>INF</td><td>KadF</td><td>309</td></tr><tr><td>INF</td><td>KadA</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>GE</td><td>Gold</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>GE</td><td>Gold</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>SPO</td><td>Matt</td><td>302</td></tr><tr><td>SPO</td><td>Gall</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>MU</td><td>Deli</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">6<br>12:35</th><td class="sp"><table><tbody><tr><td>GEO</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>LA</td><td>Drei</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>BIO</td><td>Stra</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>SPO</td><td>Matt</td><td>302</td></tr><tr><td>SPO</td><td>Gall</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">7<br>13:25</th><td class="sp"><table><tbody><tr><td>KU</td><td>Lieb</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>LA</td><td>Drei</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>----------</td><td></td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>SPA</td><td>Heli</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>----------</td><td></td></tr></tbody></table></td></tr></tbody></table>
 			</div>
 		</div>
-		<audio id="Stunde"
-			src="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/laugh_x.wav" preload="auto">
-			Ihr Browser unterschtüzt diese Datei nicht.<br> 
-			<a href="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/laugh_x.wav">Sie können es hier manuell aufrufen.</a>
-		</audio>
-		
-		<audio id="Pause"
-			src="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/fanfare3.wav" preload="auto">
-			Ihr Browser unterschtüzt diese Datei nicht.<br> 
-			<a href="https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/fanfare3.wav">Sie können es hier manuell aufrufen.</a>
-		</audio>
 	</body>
 </html>
