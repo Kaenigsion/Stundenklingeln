@@ -65,9 +65,58 @@
 				float: center;
 			}
 			
-			.hehe {
+			input[type="checkbox"] {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+				height: 0;
+				width: 0;
+			}
+			
+			input[type="checkbox"] {
+				position: absolute;
+				right: 15px;
+			}
+
+			input[type="checkbox"] + label {
+					position: relative;
+					display: inline-flex;
+					cursor: pointer;
+					font-family: sans-serif;
+					font-size: 24px;
+					line-height: 1.3;
+			}
+
+			input[type="checkbox"] + label:before {
+				width: 60px;
+				height: 30px;
+				border-radius: 30px;
+				border: 2px solid transparent;
+				background-color: #EEE;
+				content: "";
+				margin-right: 15px;
+				transition: background-color 0.7s linear;
+			}
+
+			input[type="checkbox"] + label:after {
 				width: 30px;
 				height: 30px;
+				border-radius: 30px;
+				background-color: #fff;
+				content: "";
+				transition: margin 0.2s linear;
+				box-shadow: 0px 0px 5px #aaa;
+				position: absolute;
+				left: 2px;
+				top: 2px;
+			}
+
+			input[type="checkbox"]:checked + label:before {
+				background-color: #B3B3B3;
+			}
+
+			input[type="checkbox"]:checked + label:after {
+				margin: 0 0 0 30px;
 			}
 			
 			.range {
@@ -99,15 +148,38 @@
 				background-color: rgba(255, 255, 255, 0.7);
 				width: 70%
 			}
+			
+			.button {
+				background-color: rgba(0, 0, 0, 0.5);
+				color: white;
+				border: none;
+				padding: 8px 16px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 20px;
+				margin: 4px 2px;
+				transition-duration: 0.2s;
+				transition-timing-function: linear;
+				cursor: pointer;
+			}
+
+			.button:hover {
+				background-color: rgba(150, 150, 150, 0.5);
+				color: white;
+				transform: scale(1.2, 1.2);
+			}
 		</style>
 		
 		<script language="JavaScript">
 			function Klingeln (jaOderNein) {
 				var welchesKlingeln;
+				var volume = document.getElementById("volume").value;
+				document.getElementById("volumep").innerHTML = volume;
+				volume = volume / 100;
 				//Stunde
 				if (jaOderNein == 0) {
 					welchesKlingeln = "https://media1.vocaroo.com/mp3/17heYfVKrb8C";
-					
 				} else if (jaOderNein == 1) {
 					welchesKlingeln = "https://media1.vocaroo.com/mp3/1o6haG5oFuUn";
 					//Pause
@@ -118,6 +190,7 @@
 				
 				var AKlingeln= new Audio(welchesKlingeln);
 				AKlingeln.play();
+				AKlingeln.volume = volume;
 			}
 			
 			
@@ -162,6 +235,22 @@
 			if (pcTestvarms == 1) {
 				var ms = addZeroMs(nd.getMilliseconds());
 				x.innerHTML = h + ":" + m + ":" + s + ":" + ms;
+				
+			} else if (pcTestvarms > 1 && pcTestvarms < 11) {
+				var ds = addZeroMs(nd.getMilliseconds());
+				ds = Math.round(ds/10);
+				if (ds == 0) {
+					ds = "0" + ds;
+				}
+				x.innerHTML = h + ":" + m + ":" + s + ":" + ds;
+				
+			} else if (pcTestvarms > 10 && pcTestvarms < 101) {
+				var cs = addZeroMs(nd.getMilliseconds());
+				cs = Math.round(cs/100);
+				if (cs == 10) {
+					cs = "0";
+				}
+				x.innerHTML = h + ":" + m + ":" + s + ":" + cs;
 			}
 			pcTest();
 			
@@ -277,6 +366,7 @@
 		var timer;
 		var timerDM = setInterval(darkModeF, 1000);
 		var glowInterval;
+		var volumeInterval = setInterval(Klingeln, 1000);
 		function pcTest() {
 			clearInterval(timer);
 			timer = 0;
@@ -284,22 +374,32 @@
 			timerDM = 0;
 			clearInterval(glowInterval);
 			glowInterval = 0;
+			clearInterval(volumeInterval);
+			volumeInterval = 0;
 			
 			var pcTestvar = document.getElementById("PCTest").value;
+			/*var pcTestvar2 = document.getElementById("PCTest2").value;*/
 			
+			
+			volumeInterval = setInterval(Klingeln, pcTestvar);
 			glowInterval = setInterval(glowy, pcTestvar);
 			timerDM = setInterval(darkModeF, pcTestvar);
 			timer = setInterval(time, pcTestvar);
 			
 			document.getElementById("PCTOutput").innerHTML = pcTestvar;
+			/*document.getElementById("PCTOutput2").innerHTML = pcTestvar2;*/
 		}
 		
 		function glowy() {
 			var glowModeVar = document.getElementById("glowMode").checked;
 			if (glowModeVar) {
 				document.getElementById("bg").style.textShadow= "#D0F3FF 0px 0px 10px, white 0px 0px 11px";
+				document.getElementById("button1").style.boxShadow= "#D0F3FF 0px 0px 10px, white 0px 0px 11px";
+				document.getElementById("button2").style.boxShadow= "#D0F3FF 0px 0px 10px, white 0px 0px 11px";
 			} else {
 				document.getElementById("bg").style.textShadow= "white 0px 0px 0px";
+				document.getElementById("button1").style.boxShadow= "white 0px 0px 0px";
+				document.getElementById("button2").style.boxShadow= "white 0px 0px 0px";
 			}
 		}
 		
@@ -361,24 +461,27 @@
 			<div Id="box2">
 				<h2>N&auml;chtes Klingeln:</h2>
 				<b><i> <p align="center" id="next" style="font-size:30px">Der Schulmodus ist aus, sodass sie nicht sehen k&ouml;nnen, wann das nächste Klingeln sein wird.</p> </i></b>
-				<input type="checkbox" id="school" class="hehe">
-				<b> <label for="school" id="Modus" style="font-size:30px">Schulmodus: AUS</label> </b>
+				<input type="checkbox" id="school" class="hehe"> <label for="school" id="Modus" style="font-size:30px; font-weight: bold">Schulmodus: AUS</label>
 			</div>
 			
 			<div Id="box4">
 				<br>
+				<!--<div style="margin-top: 30px; float: right; width: 30%; height: 30px">
+					<input type="number" min="1" max="1000" id="PCTest2" style="width:90%; height: 30px" align="center">
+				</div>-->
 				<form>
 					<div>
 						<p style="font-weight: bold; font-size: 25px">Wie krass ist dein Computer? (1-1000)</p><br>
+						
 						<div>
 							<i style="font-weight: 700">sehr gut</i>
 							<i style="font-weight: 700; margin-left: 18.55%">gut</i>
 							<i style="font-weight: 700; margin-left: 23.5%">schlecht</i>
 						</div>
-						<input type="range" id="PCTest" class="range" value="1000" min="1" max="1000" list="tickmarks">
+						<input type="range" id="PCTest" class="range" value="8" min="1" max="1000" list="tickmarks">
 
 						<datalist id="tickmarks">
-							<option value="0"></option>
+							<option value="1"></option>
 							<option value="100"></option>
 							<option value="200"></option>
 							<option value="300"></option>
@@ -401,20 +504,43 @@
 				<div style="float: right; margin: 10px">
 					<input type="checkbox" class="hehe" id="glowMode"> <label for="glowMode" style="font-size: 35px; font-weight: bold">Glow mode</label>
 				</div>
+				<div style="height: 45%">
+					<div style="float: left; margin: 2%; width: 40%">
+						<p align="center" style="font-size: 35px; font-weight: bold">Lautstärke</p>
+						<i style="font-weight: bold">1</i>
+						<i style="font-weight: bold; margin-left: 84%">100</i>
+						<input type="range" min="1" max="100" style="width: 95%" value="50" id="volume" list="volumeList">
+						<p id="VolumeNum" style="float: right"></p>
+						
+						<datalist id="volumeList">
+							<option value="1"></option>
+							<option value="10"></option>
+							<option value="20"></option>
+							<option value="30"></option>
+							<option value="40"></option>
+							<option value="50"></option>
+							<option value="60"></option>
+							<option value="70"></option>
+							<option value="80"></option>
+							<option value="90"></option>
+							<option value="100"></option>
+						</datalist>
+					</div>
+					
+					<div style="float: left; clear: none; width: 20px; margin-left: 25px;">
+						<p id="volumep" style="margin-top: 120px; font-weight: bold; font-size: 30px; float:right">50</p>
+					</div>
+				</div>
 				
 				<div style="width:50%;font-size: 150%;float: right;">
 					<div align="center">
 						<p>Drücke hier, um das</p>
-						<button onclick="Klingeln(0)">Stundenklingeln</button> <b>oder das</b> <button onclick="Klingeln(1)">Pausenklingeln</button>
+						<button id="button1" class="button" style="font-weight: bold;" onclick="Klingeln(0)">Stundenklingeln</button> 
+						<br> <b>oder das</b> <br>
+						<button id="button2" class="button" style="font-weight: bold;" onclick="Klingeln(1)">Pausenklingeln</button>
 						<p>zu simulieren.</p>
 					</div>
 				</div>
-				
-				<!--<div style="width:50%;font-size: 150%;float: left;">
-					<div align="center">
-						<input type="radio">
-					</div>
-				</div>-->
 			</div>
 			
 			<!--Diese Tabelle ist von http://cottagym.selfhost.eu/index.php/schulorganisation/stunden-vertretungsplan/mein-stundenplan \/-->
