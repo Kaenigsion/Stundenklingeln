@@ -1,10 +1,10 @@
 window.addEventListener("load", function () {
   var darkModeCheckbox = document.getElementById("darkM");
-  darkModeF();
-  darkModeCheckbox.addEventListener("change", darkModeF);
+  darkModeFn();
+  darkModeCheckbox.addEventListener("change", darkModeFn);
 });
 
-function darkModeF() {
+function darkModeFn() {
   var darkModeCheckbox = document.getElementById("darkM");
   DMCheck = darkModeCheckbox.checked;
 

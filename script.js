@@ -175,41 +175,21 @@ function time(w) {
 }
 
 var timer;
-var glowInterval;
 var volumeInterval = setInterval(Klingeln, 1000);
 function pcTest() {
   clearInterval(timer);
   timer = 0;
-  clearInterval(glowInterval);
-  glowInterval = 0;
   clearInterval(volumeInterval);
   volumeInterval = 0;
 
-  var pcTestvar = document.getElementById("PCTest").value;
+  var wieKrassIstDeinComputer = document.getElementById("PCTest").value;
   /*var pcTestvar2 = document.getElementById("PCTest2").value;*/
 
-  volumeInterval = setInterval(Klingeln, pcTestvar);
-  glowInterval = setInterval(glowy, pcTestvar);
-  timer = setInterval(time, pcTestvar);
+  volumeInterval = setInterval(Klingeln, wieKrassIstDeinComputer);
+  timer = setInterval(time, wieKrassIstDeinComputer);
 
-  document.getElementById("PCTOutput").innerHTML = pcTestvar;
+  document.getElementById("PCTOutput").innerHTML = wieKrassIstDeinComputer;
   /*document.getElementById("PCTOutput2").innerHTML = pcTestvar2;*/
-}
-
-function glowy() {
-  var glowModeVar = document.getElementById("glowMode").checked;
-  if (glowModeVar) {
-    document.getElementById("bg").style.textShadow =
-      "#D0F3FF 0px 0px 10px, white 0px 0px 11px";
-    document.getElementById("button1").style.boxShadow =
-      "#D0F3FF 0px 0px 10px, white 0px 0px 11px";
-    document.getElementById("button2").style.boxShadow =
-      "#D0F3FF 0px 0px 10px, white 0px 0px 11px";
-  } else {
-    document.getElementById("bg").style.textShadow = "white 0px 0px 0px";
-    document.getElementById("button1").style.boxShadow = "white 0px 0px 0px";
-    document.getElementById("button2").style.boxShadow = "white 0px 0px 0px";
-  }
 }
 
 timer = setInterval(time, 1000);
