@@ -1,4 +1,5 @@
 function Klingeln(jaOderNein) {
+  if (!jaOderNein) return;
   var welchesKlingeln;
   var volume = document.getElementById("volume").value;
   document.getElementById("volumep").innerHTML = volume;
@@ -18,66 +19,118 @@ function Klingeln(jaOderNein) {
   AKlingeln.volume = volume;
 }
 
+function stundenKlingelnStarten(humanReadableTime) {
+  switch (humanReadableTime) {
+    //1.Stunde
+    case "07:40:00":
+      Klingeln(0);
+      break;
+
+    case "08:25:00":
+      Klingeln(1);
+      break;
+
+    //2.Stunde
+    case "08:35:00":
+      Klingeln(0);
+      break;
+
+    case "09:20:00":
+      Klingeln(1);
+      break;
+
+    //3.+4. Stunde
+    case "09:40:00":
+      Klingeln(0);
+      break;
+
+    case "11:10:00":
+      Klingeln(1);
+      break;
+
+    //5.Stunde
+    case "11:20:00":
+      Klingeln(0);
+      break;
+
+    case "12:05:00":
+      Klingeln(1);
+      break;
+
+    //6. Stunde
+    case "12:35:00":
+      Klingeln(0);
+      break;
+
+    case "13:20:00":
+      Klingeln(2);
+      break;
+
+    case "18:13:20":
+      Klingeln(2);
+      break;
+  }
+}
+
 //https://www.myinstants.com/media/sounds/m3.mp3
 //http://www.light2art.de/MP3/Big-Boom_Fanfare.mp3
 //https://media1.vocaroo.com/mp3/12V6hlULsyPE
 //https://media1.vocaroo.com/mp3/1djyPBo3FGUt
 
-function addZero(i) {
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
-
-function addZeroMs(i) {
-  if (i < 100) {
-    i = "0" + i;
+function zeitAnzeigeAktualisieren() {
+  function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
   }
 
-  if (i < 10) {
-    i = "0" + i;
-  }
-  return i;
-}
+  function addZeroMs(i) {
+    if (i < 100) {
+      i = "0" + i;
+    }
 
-function time(w) {
-  var nd = new Date();
-  var x = document.getElementById("TIME");
-  var h = addZero(nd.getHours());
-  var m = addZero(nd.getMinutes());
-  var s = addZero(nd.getSeconds());
-  x.innerHTML = h + ":" + m + ":" + s;
-  var TRTime = h + ":" + m + ":" + s;
-  var cconfirm;
-  var check = document.getElementById("school").checked;
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+  var now = new Date();
+  var zeitElement = document.getElementById("TIME");
+  var h = addZero(now.getHours());
+  var m = addZero(now.getMinutes());
+  var s = addZero(now.getSeconds());
+  var humanReadableTime = h + ":" + m + ":" + s;
+  zeitElement.innerHTML = humanReadableTime;
+  var schoolModusCheckbox = document.getElementById("schoolModus");
+  var schoolModusCheckboxLabel = document.getElementById("schoolModusLabel");
   var nextRing =
     "Der Schulmodus ist aus, sodass sie nicht sehen können, \n wann das nächste Klingeln sein wird.";
   var StundeBox = "";
 
-  var pcTestvarms = document.getElementById("PCTest").value;
-  if (pcTestvarms == 1) {
-    var ms = addZeroMs(nd.getMilliseconds());
-    x.innerHTML = h + ":" + m + ":" + s + ":" + ms;
-  } else if (pcTestvarms > 1 && pcTestvarms < 11) {
-    var ds = addZeroMs(nd.getMilliseconds());
+  var pcTestVarMs = document.getElementById("PCTest").value;
+  if (pcTestVarMs == 1) {
+    var ms = addZeroMs(now.getMilliseconds());
+    zeitElement.innerHTML = h + ":" + m + ":" + s + ":" + ms;
+  } else if (pcTestVarMs > 1 && pcTestVarMs < 11) {
+    var ds = addZeroMs(now.getMilliseconds());
     ds = Math.round(ds / 10);
     if (ds == 0) {
       ds = "0" + ds;
     }
-    x.innerHTML = h + ":" + m + ":" + s + ":" + ds;
-  } else if (pcTestvarms > 10 && pcTestvarms < 101) {
-    var cs = addZeroMs(nd.getMilliseconds());
+    zeitElement.innerHTML = h + ":" + m + ":" + s + ":" + ds;
+  } else if (pcTestVarMs > 10 && pcTestVarMs < 101) {
+    var cs = addZeroMs(now.getMilliseconds());
     cs = Math.round(cs / 100);
     if (cs == 10) {
       cs = "0";
     }
-    x.innerHTML = h + ":" + m + ":" + s + ":" + cs;
+    zeitElement.innerHTML = h + ":" + m + ":" + s + ":" + cs;
   }
   pcTest();
 
-  if (check == true) {
-    cconfirm = "chulmodus: AN";
+  if (schoolModusCheckbox.checked == true) {
+    schoolModusCheckboxLabel.innerHTML = "chulmodus: AN";
 
     if (h == 7 && m < 40) {
       nextRing = "7:40";
@@ -114,68 +167,17 @@ function time(w) {
         '7:40 | Gratuliere! Du hast die Schule beendet und weißt jetzt, wie "Schule" geschrieben wird.';
       StundeBox = "Pause (18 h; 20 min)";
     }
-
-    switch (TRTime) {
-      //1.Stunde
-      case "07:40:00":
-        Klingeln(0);
-        break;
-
-      case "08:25:00":
-        Klingeln(1);
-        break;
-
-      //2.Stunde
-      case "08:35:00":
-        Klingeln(0);
-        break;
-
-      case "09:20:00":
-        Klingeln(1);
-        break;
-
-      //3.+4. Stunde
-      case "09:40:00":
-        Klingeln(0);
-        break;
-
-      case "11:10:00":
-        Klingeln(1);
-        break;
-
-      //5.Stunde
-      case "11:20:00":
-        Klingeln(0);
-        break;
-
-      case "12:05:00":
-        Klingeln(1);
-        break;
-
-      //6. Stunde
-      case "12:35:00":
-        Klingeln(0);
-        break;
-
-      case "13:20:00":
-        Klingeln(2);
-        break;
-
-      case "18:13:20":
-        Klingeln(2);
-        break;
-    }
+    stundenKlingelnStarten(humanReadableTime);
   } else {
-    cconfirm = "Schulmodus: AUS";
+    schoolModusCheckboxLabel.innerHTML = "Schulmodus: AUS";
   }
 
-  document.getElementById("Modus").innerHTML = cconfirm;
   document.getElementById("next").innerHTML = nextRing;
   document.getElementById("StundeBox").innerHTML = StundeBox;
 }
 
 var timer;
-var volumeInterval = setInterval(Klingeln, 1000);
+var volumeInterval;
 function pcTest() {
   clearInterval(timer);
   timer = 0;
@@ -186,10 +188,13 @@ function pcTest() {
   /*var pcTestvar2 = document.getElementById("PCTest2").value;*/
 
   volumeInterval = setInterval(Klingeln, wieKrassIstDeinComputer);
-  timer = setInterval(time, wieKrassIstDeinComputer);
+  timer = setInterval(zeitAnzeigeAktualisieren, wieKrassIstDeinComputer);
 
   document.getElementById("PCTOutput").innerHTML = wieKrassIstDeinComputer;
   /*document.getElementById("PCTOutput2").innerHTML = pcTestvar2;*/
 }
 
-timer = setInterval(time, 1000);
+window.addEventListener("load", function () {
+  volumeInterval = setInterval(Klingeln, 1000);
+  timer = setInterval(zeitAnzeigeAktualisieren, 1000);
+});
