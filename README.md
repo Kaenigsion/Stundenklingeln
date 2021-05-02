@@ -1,6 +1,6 @@
 # Stundenklingeln
 
-Ein Projekt während der haüslichen Lernzeit.
+Ein Projekt während der häuslichen Lernzeit.
 
 ---
 
