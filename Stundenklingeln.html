@@ -1,122 +1,668 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <title>Stundenklingeln</title>
 
-	<head>
-		<meta name="viewport" content="width=device-width">
-		<meta charset="utf-8" />
-		<title>Stundenklingeln</title>
-		
-		<script src="script.js"></script>
-		<link rel="stylesheet" href="style.css">
-	</head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-	<body id="bg">
-		<div>
-			<div Id="hone">
-				<h1 align="center" style="font-size:45px;text-shadow: 6px 6px 8px black;">Hallo, willkommen! :D</h1>
-			</div>
-			
-			<div Id="box">
-				<p style="font-size:20px" align="center">
-				Zeit:
-				</p>
-				<strong> <p align="center" style="font-size:50px" id="TIME">(Zeit)</p> </strong>
-				<div id="StundeBox"  class="box3"></div>
-			</div>
+  <body id="bg">
+    <div>
+      <div id="hone">
+        <h1
+          align="center"
+          style="font-size: 45px; text-shadow: 6px 6px 8px black"
+        >
+          Hallo, willkommen! :D
+        </h1>
+      </div>
 
-			<div Id="box2">
-				<h2>N&auml;chtes Klingeln:</h2>
-				<b><i> <p align="center" id="next" style="font-size:30px">Der Schulmodus ist aus, sodass sie nicht sehen k&ouml;nnen, wann das nächste Klingeln sein wird.</p> </i></b>
-				<input type="checkbox" id="school" class="hehe"> <label for="school" id="Modus" style="font-size:30px; font-weight: bold">Schulmodus: AUS</label>
-			</div>
-			
-			<div Id="box4">
-				<br>
-				<!--<div style="margin-top: 30px; float: right; width: 30%; height: 30px">
+      <div id="box">
+        <p style="font-size: 20px" align="center">Zeit:</p>
+        <strong>
+          <p align="center" style="font-size: 50px" id="TIME">(Zeit)</p>
+        </strong>
+        <div id="StundeBox" class="box3"></div>
+      </div>
+
+      <div id="box2">
+        <h2>N&auml;chtes Klingeln:</h2>
+        <b
+          ><i>
+            <p align="center" id="next" style="font-size: 30px">
+              Der Schulmodus ist aus, sodass sie nicht sehen k&ouml;nnen, wann
+              das nächste Klingeln sein wird.
+            </p>
+          </i></b
+        >
+        <input type="checkbox" id="school" class="hehe" />
+        <label
+          for="school"
+          id="Modus"
+          style="font-size: 30px; font-weight: bold"
+          >Schulmodus: AUS</label
+        >
+      </div>
+
+      <div id="box4">
+        <br />
+        <!--<div style="margin-top: 30px; float: right; width: 30%; height: 30px">
 					<input type="number" min="1" max="1000" id="PCTest2" style="width:90%; height: 30px" align="center">
 				</div>-->
-				<form>
-					<div>
-						<p style="font-weight: bold; font-size: 25px">Wie krass ist dein Computer? (1-1000)</p><br>
-						
-						<div>
-							<i style="font-weight: 700">sehr gut</i>
-							<i style="font-weight: 700; margin-left: 18.55%">gut</i>
-							<i style="font-weight: 700; margin-left: 23.5%">schlecht</i>
-						</div>
-						<input type="range" id="PCTest" class="range" value="8" min="1" max="1000" list="tickmarks">
+        <form>
+          <div>
+            <p style="font-weight: bold; font-size: 25px">
+              Wie krass ist dein Computer? (1-1000)
+            </p>
+            <br />
 
-						<datalist id="tickmarks">
-							<option value="1"></option>
-							<option value="100"></option>
-							<option value="200"></option>
-							<option value="300"></option>
-							<option value="400"></option>
-							<option value="500"></option>
-							<option value="600"></option>
-							<option value="700"></option>
-							<option value="800"></option>
-							<option value="900"></option>
-							<option value="1000"></option>
-						</datalist>
-						<div style="width: 20%; float: right"><b id="PCTOutput" style="float: center; font-size: 40px"></b></div>
-					</div>
-				</form>
-				
-				<div style="float:left; margin: 10px">
-					<input type="checkbox" class="hehe" id="darkM" checked> <label for="darkM" style="font-size: 35px; font-weight: bold">Dark mode</label> <br>
-				</div>
-				
-				<div style="float: right; margin: 10px">
-					<input type="checkbox" class="hehe" id="glowMode"> <label for="glowMode" style="font-size: 35px; font-weight: bold">Glow mode</label>
-				</div>
-				<div style="height: 45%">
-					<div style="float: left; margin: 2%; width: 40%">
-						<p align="center" style="font-size: 35px; font-weight: bold">Lautstärke</p>
-						<i style="font-weight: bold">1</i>
-						<i style="font-weight: bold; margin-left: 84%">100</i>
-						<input type="range" min="1" max="100" style="width: 95%" value="50" id="volume" list="volumeList">
-						<p id="VolumeNum" style="float: right"></p>
-						
-						<datalist id="volumeList">
-							<option value="1"></option>
-							<option value="10"></option>
-							<option value="20"></option>
-							<option value="30"></option>
-							<option value="40"></option>
-							<option value="50"></option>
-							<option value="60"></option>
-							<option value="70"></option>
-							<option value="80"></option>
-							<option value="90"></option>
-							<option value="100"></option>
-						</datalist>
-					</div>
-					
-					<div style="float: left; clear: none; width: 20px; margin-left: 25px;">
-						<p id="volumep" style="margin-top: 120px; font-weight: bold; font-size: 30px; float:right">50</p>
-					</div>
-				</div>
-				
-				<div style="width:50%;font-size: 150%;float: right;">
-					<div align="center">
-						<p>Drücke hier, um das</p>
-						<button id="button1" class="button" style="font-weight: bold;" onclick="Klingeln(0)">Stundenklingeln</button> 
-						<br> <b>oder das</b> <br>
-						<button id="button2" class="button" style="font-weight: bold;" onclick="Klingeln(1)">Pausenklingeln</button>
-						<p>zu simulieren.</p>
-					</div>
-				</div>
-			</div>
-			
-			<!--Diese Tabelle ist von http://cottagym.selfhost.eu/index.php/schulorganisation/stunden-vertretungsplan/mein-stundenplan \/-->
-			<div Id="box5">
-				<table class="plan" id="stundenplan"><tbody><tr class="sp"><th class="sp">Stunde<br>Zeit</th><th class="sp">Montag</th><th class="sp">Dienstag</th><th class="sp">Mittwoch</th><th class="sp">Donnerstag</th><th class="sp">Freitag</th></tr><tr class="sp"><th class="sp">1<br>07:40</th><td class="sp"><table><tbody><tr><td>PH</td><td>Schn</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>Pnw</td><td>Feld</td><td>VogJ</td><td>Mink</td><td>301</td></tr><tr><td>Pspo</td><td>Gall</td><td>309</td></tr><tr><td>SPA</td><td>Heli</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>MA</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>LA</td><td>Drei</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">2<br>08:35</th><td class="sp"><table><tbody><tr><td>PH</td><td>Schn</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>Pnw</td><td>Feld</td><td>VogJ</td><td>Mink</td><td>301</td></tr><tr><td>Pspo</td><td>Gall</td><td>309</td></tr><tr><td>SPA</td><td>Heli</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>GRW</td><td>Weiß</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>MA</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>EN</td><td>Mart</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">3<br>09:40</th><td class="sp"><table><tbody><tr><td>MA</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>EN</td><td>Mart</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>ETH</td><td>Hebe</td><td>301</td></tr><tr><td>ETH</td><td>BarL</td><td>309</td></tr><tr><td>RE/e</td><td>MarN</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>CH</td><td>Fran</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">4<br>10:25</th><td class="sp"><table><tbody><tr><td>MA</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>EN</td><td>Mart</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>ETH</td><td>Hebe</td><td>301</td></tr><tr><td>ETH</td><td>BarL</td><td>309</td></tr><tr><td>RE/e</td><td>MarN</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>CH</td><td>Fran</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">5<br>11:40</th><td class="sp"><table><tbody><tr><td>INF</td><td>KadF</td><td>309</td></tr><tr><td>INF</td><td>KadA</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>GE</td><td>Gold</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>GE</td><td>Gold</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>SPO</td><td>Matt</td><td>302</td></tr><tr><td>SPO</td><td>Gall</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>MU</td><td>Deli</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">6<br>12:35</th><td class="sp"><table><tbody><tr><td>GEO</td><td>Heim</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>LA</td><td>Drei</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>BIO</td><td>Stra</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>SPO</td><td>Matt</td><td>302</td></tr><tr><td>SPO</td><td>Gall</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>DE</td><td>Stre</td><td>309</td></tr></tbody></table></td></tr><tr class="sp"><th class="sp">7<br>13:25</th><td class="sp"><table><tbody><tr><td>KU</td><td>Lieb</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>LA</td><td>Drei</td><td>309</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>----------</td><td></td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>SPA</td><td>Heli</td><td>302</td></tr></tbody></table></td><td class="sp"><table><tbody><tr><td>----------</td><td></td></tr></tbody></table></td></tr></tbody></table>
-			</div>
-			<div class="ZR">
-				<p>Zahlenraten :O</p>
-			</div>
-			<!--Idee: nur in Pausen verfügbar hahahahah xD-->
-		</div>
-	</body>
+            <div>
+              <i style="font-weight: 700">sehr gut</i>
+              <i style="font-weight: 700; margin-left: 18.55%">gut</i>
+              <i style="font-weight: 700; margin-left: 23.5%">schlecht</i>
+            </div>
+            <input
+              type="range"
+              id="PCTest"
+              class="range"
+              value="8"
+              min="1"
+              max="1000"
+              list="tickmarks"
+            />
+
+            <datalist id="tickmarks">
+              <option value="1"></option>
+              <option value="100"></option>
+              <option value="200"></option>
+              <option value="300"></option>
+              <option value="400"></option>
+              <option value="500"></option>
+              <option value="600"></option>
+              <option value="700"></option>
+              <option value="800"></option>
+              <option value="900"></option>
+              <option value="1000"></option>
+            </datalist>
+            <div style="width: 20%; float: right">
+              <b id="PCTOutput" style="float: center; font-size: 40px"></b>
+            </div>
+          </div>
+        </form>
+
+        <div style="float: left; margin: 10px">
+          <input type="checkbox" class="hehe" id="darkM" checked />
+          <label for="darkM" style="font-size: 35px; font-weight: bold"
+            >Dark mode</label
+          >
+          <br />
+        </div>
+
+        <div style="float: right; margin: 10px">
+          <input type="checkbox" class="hehe" id="glowMode" />
+          <label for="glowMode" style="font-size: 35px; font-weight: bold"
+            >Glow mode</label
+          >
+        </div>
+        <div style="height: 45%">
+          <div style="float: left; margin: 2%; width: 40%">
+            <p align="center" style="font-size: 35px; font-weight: bold">
+              Lautstärke
+            </p>
+            <i style="font-weight: bold">1</i>
+            <i style="font-weight: bold; margin-left: 84%">100</i>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              style="width: 95%"
+              value="50"
+              id="volume"
+              list="volumeList"
+            />
+            <p id="VolumeNum" style="float: right"></p>
+
+            <datalist id="volumeList">
+              <option value="1"></option>
+              <option value="10"></option>
+              <option value="20"></option>
+              <option value="30"></option>
+              <option value="40"></option>
+              <option value="50"></option>
+              <option value="60"></option>
+              <option value="70"></option>
+              <option value="80"></option>
+              <option value="90"></option>
+              <option value="100"></option>
+            </datalist>
+          </div>
+
+          <div style="float: left; clear: none; width: 20px; margin-left: 25px">
+            <p
+              id="volumep"
+              style="
+                margin-top: 120px;
+                font-weight: bold;
+                font-size: 30px;
+                float: right;
+              "
+            >
+              50
+            </p>
+          </div>
+        </div>
+
+        <div style="width: 50%; font-size: 150%; float: right">
+          <div align="center">
+            <p>Drücke hier, um das</p>
+            <button
+              id="button1"
+              class="button"
+              style="font-weight: bold"
+              onclick="Klingeln(0)"
+            >
+              Stundenklingeln
+            </button>
+            <br />
+            <b>oder das</b> <br />
+            <button
+              id="button2"
+              class="button"
+              style="font-weight: bold"
+              onclick="Klingeln(1)"
+            >
+              Pausenklingeln
+            </button>
+            <p>zu simulieren.</p>
+          </div>
+        </div>
+      </div>
+
+      <!--Diese Tabelle ist von http://cottagym.selfhost.eu/index.php/schulorganisation/stunden-vertretungsplan/mein-stundenplan \/-->
+      <div id="box5">
+        <table class="plan" id="stundenplan">
+          <tbody>
+            <tr class="sp">
+              <th class="sp">Stunde<br />Zeit</th>
+              <th class="sp">Montag</th>
+              <th class="sp">Dienstag</th>
+              <th class="sp">Mittwoch</th>
+              <th class="sp">Donnerstag</th>
+              <th class="sp">Freitag</th>
+            </tr>
+            <tr class="sp">
+              <th class="sp">1<br />07:40</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>PH</td>
+                      <td>Schn</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Pnw</td>
+                      <td>Feld</td>
+                      <td>VogJ</td>
+                      <td>Mink</td>
+                      <td>301</td>
+                    </tr>
+                    <tr>
+                      <td>Pspo</td>
+                      <td>Gall</td>
+                      <td>309</td>
+                    </tr>
+                    <tr>
+                      <td>SPA</td>
+                      <td>Heli</td>
+                      <td>302</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>DE</td>
+                      <td>Stre</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>MA</td>
+                      <td>Heim</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>LA</td>
+                      <td>Drei</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="sp">
+              <th class="sp">2<br />08:35</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>PH</td>
+                      <td>Schn</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Pnw</td>
+                      <td>Feld</td>
+                      <td>VogJ</td>
+                      <td>Mink</td>
+                      <td>301</td>
+                    </tr>
+                    <tr>
+                      <td>Pspo</td>
+                      <td>Gall</td>
+                      <td>309</td>
+                    </tr>
+                    <tr>
+                      <td>SPA</td>
+                      <td>Heli</td>
+                      <td>302</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>GRW</td>
+                      <td>Weiß</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>MA</td>
+                      <td>Heim</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>EN</td>
+                      <td>Mart</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="sp">
+              <th class="sp">3<br />09:40</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>MA</td>
+                      <td>Heim</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>DE</td>
+                      <td>Stre</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>EN</td>
+                      <td>Mart</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>ETH</td>
+                      <td>Hebe</td>
+                      <td>301</td>
+                    </tr>
+                    <tr>
+                      <td>ETH</td>
+                      <td>BarL</td>
+                      <td>309</td>
+                    </tr>
+                    <tr>
+                      <td>RE/e</td>
+                      <td>MarN</td>
+                      <td>302</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>CH</td>
+                      <td>Fran</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="sp">
+              <th class="sp">4<br />10:25</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>MA</td>
+                      <td>Heim</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>DE</td>
+                      <td>Stre</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>EN</td>
+                      <td>Mart</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>ETH</td>
+                      <td>Hebe</td>
+                      <td>301</td>
+                    </tr>
+                    <tr>
+                      <td>ETH</td>
+                      <td>BarL</td>
+                      <td>309</td>
+                    </tr>
+                    <tr>
+                      <td>RE/e</td>
+                      <td>MarN</td>
+                      <td>302</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>CH</td>
+                      <td>Fran</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="sp">
+              <th class="sp">5<br />11:40</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>INF</td>
+                      <td>KadF</td>
+                      <td>309</td>
+                    </tr>
+                    <tr>
+                      <td>INF</td>
+                      <td>KadA</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>GE</td>
+                      <td>Gold</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>GE</td>
+                      <td>Gold</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>SPO</td>
+                      <td>Matt</td>
+                      <td>302</td>
+                    </tr>
+                    <tr>
+                      <td>SPO</td>
+                      <td>Gall</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>MU</td>
+                      <td>Deli</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="sp">
+              <th class="sp">6<br />12:35</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>GEO</td>
+                      <td>Heim</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>LA</td>
+                      <td>Drei</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>BIO</td>
+                      <td>Stra</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>SPO</td>
+                      <td>Matt</td>
+                      <td>302</td>
+                    </tr>
+                    <tr>
+                      <td>SPO</td>
+                      <td>Gall</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>DE</td>
+                      <td>Stre</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="sp">
+              <th class="sp">7<br />13:25</th>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>KU</td>
+                      <td>Lieb</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>LA</td>
+                      <td>Drei</td>
+                      <td>309</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>----------</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>SPA</td>
+                      <td>Heli</td>
+                      <td>302</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="sp">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>----------</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ZR">
+        <p>Zahlenraten :O</p>
+      </div>
+      <!--Idee: nur in Pausen verfügbar hahahahah xD-->
+    </div>
+  </body>
 </html>
