@@ -8,3 +8,5 @@ Das Programm soll das Klingeln (eigentlich nur die Klingelzeit) meiner Schule na
 Update: Dark Mode
 
 Update: Klingeln funktioniert + neue Klingeltöne
+
+Ein Projekt von Paul
