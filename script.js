@@ -175,14 +175,11 @@ function time(w) {
 }
 
 var timer;
-var timerDM = setInterval(darkModeF, 1000);
 var glowInterval;
 var volumeInterval = setInterval(Klingeln, 1000);
 function pcTest() {
   clearInterval(timer);
   timer = 0;
-  clearInterval(timerDM);
-  timerDM = 0;
   clearInterval(glowInterval);
   glowInterval = 0;
   clearInterval(volumeInterval);
@@ -193,7 +190,6 @@ function pcTest() {
 
   volumeInterval = setInterval(Klingeln, pcTestvar);
   glowInterval = setInterval(glowy, pcTestvar);
-  timerDM = setInterval(darkModeF, pcTestvar);
   timer = setInterval(time, pcTestvar);
 
   document.getElementById("PCTOutput").innerHTML = pcTestvar;
@@ -213,49 +209,6 @@ function glowy() {
     document.getElementById("bg").style.textShadow = "white 0px 0px 0px";
     document.getElementById("button1").style.boxShadow = "white 0px 0px 0px";
     document.getElementById("button2").style.boxShadow = "white 0px 0px 0px";
-  }
-}
-
-var DMCheck = true;
-
-function darkModeF() {
-  var darkModeCheckbox = document.getElementById("darkM");
-  DMCheck = darkModeCheckbox.checked;
-
-  if (DMCheck == true) {
-    document.getElementById("stundenplan").style.backgroundColor =
-      "rgba(0, 0, 0, 0.6)";
-    document.getElementById("box").style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-    document.getElementById("box2").style.backgroundColor =
-      "rgba(0, 0, 0, 0.6)";
-    document.getElementById("box4").style.backgroundColor =
-      "rgba(0, 0, 0, 0.6)";
-    document.getElementById("StundeBox").style.backgroundColor =
-      "rgba(0, 0, 0, 0.7)";
-
-    document.getElementById("bg").style.color = "white";
-    document.getElementById("box5").style.backgroundImage =
-      "url('https://www.scinexx.de/wp-content/uploads/0/1/01-33804-entrozeit00.jpg')";
-    document.getElementById("bg").style.backgroundImage =
-      "url('https://www.oeaw.ac.at/fileadmin/NEWS/2015/user_upload/20170802_Entropie_Slider.png')";
-  } else {
-    document.getElementById("bg").style.color = "black";
-
-    document.getElementById("stundenplan").style.backgroundColor =
-      "rgba(255, 255, 255, 0.5)";
-    document.getElementById("box").style.backgroundColor =
-      "rgba(255, 255, 255, 0.5)";
-    document.getElementById("box2").style.backgroundColor =
-      "rgba(255, 255, 255, 0.5)";
-    document.getElementById("box4").style.backgroundColor =
-      "rgba(255, 255, 255, 0.5)";
-    document.getElementById("StundeBox").style.backgroundColor =
-      "rgba(255, 255, 255, 0.0)";
-
-    document.getElementById("box5").style.backgroundImage =
-      "url('https://www.wallpapertip.com/wmimgs/73-737311_hintergrundbilder-uhr-zeit-holzplatte-licht-sebilj.jpg')";
-    document.getElementById("bg").style.backgroundImage =
-      "url('https://www.hrtoday.ch/sites/hrtoday.ch/files/media/article/Zeit_Uhr_Kopf_Stress_123rf.jpg')";
   }
 }
 
